@@ -11,6 +11,7 @@ def talk_to_user():
     if Y_N=='YES':
         return True
     else:
+        print("Thankyou for coming \n code willl not execute as you said not to start")
         return False
 
 def symbol_assignment():
@@ -44,6 +45,7 @@ def in_range(ranged, count, place,mylist):
         return place
 
 def add_to_board():
+       if talk_to_user()==True:
         mylist=[0,1,2,3,4,5,6,7,8]
         count = 0
         symbol1, symbol2 = symbol_assignment()
@@ -51,8 +53,8 @@ def add_to_board():
         print(display_board(ranged))
         inputs=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
         user_input(ranged, count, inputs, symbol1, symbol2,mylist)
-            
-        
+
+
 
 def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
     wongame=False
