@@ -30,17 +30,20 @@ def symbol_assignment():
             print('Player2:You have been assigned as X')
         return symbol1,symbol2
 
-def in_range(ranged, count, place):
+def in_range(ranged, count, place,mylist):
     count += 1
     if count%2 == 0:
         while place not in ranged:
             if place not in ranged:
-                place=input('Player1:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: ')
+                place=input(f'Player1:Choose number from:{mylist} ')
                 print('please print a valid number within given range')
+        return place
+    else:
         while place not in ranged:
             if place not in ranged:
-                place=input('Player2:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: ')
+                place=input(f'Player2:Choose number from:{mylist} ')
                 print('please print a valid number within given range')
+        return place
 
 def add_to_board():
         mylist=[0,1,2,3,4,5,6,7,8]
@@ -63,8 +66,8 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
         else:
             if(count%2==0):
                 place=int(input(f'player 1: choose number from:{mylist} '))
+                in_range(ranged, count, place,mylist)
                 mylist.remove(place)
-                in_range(ranged, count, place)
                 if inputs[place] == ' ':
                     inputs[place]=symbol1
                     print(display_board(inputs))
@@ -72,7 +75,7 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
                     while inputs[place]!=' ':
                         place=int(input(f'Player1:Choose number from:{mylist} '))
                         mylist.remove(place)
-                        in_range(ranged, count, place)
+                        in_range(ranged, count, place,mylist)
                     print(display_board(inputs)) 
                     mylist.remove(place)            
                 inputs[place]=symbol1
@@ -82,16 +85,16 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
             else:
                 while inputs[place]!=' ':
                     place=int(input(f'Player2:choose number from:{mylist} '))
-                    mylist.remove(place)
-                    in_range(ranged, count, place)
+                    in_range(ranged, count, place,mylist)
+                mylist.remove(place)
                 if inputs[place]==' ':
                     inputs[place]=symbol2
                     print(display_board(inputs))
                 else:
                     while inputs[place]!=' ':
                         place=int(input(f'Player2:Choose number from:{mylist} '))
-                        mylist.remove(place)
-                        in_range(ranged, count, place)
+                        in_range(ranged, count, place,mylist)
+                mylist.remove(place)
                 if inputs[0]==inputs[1]==inputs[2]==symbol2 or inputs[3]==inputs[4]==inputs[5]==symbol2 or inputs[6]==inputs[7]==inputs[8]==symbol2 or inputs[0]==inputs[3]==inputs[6]==symbol2 or inputs[1]==inputs[4]==inputs[7]==symbol2 or inputs[2]==inputs[5]==inputs[8]==symbol2 or inputs[0]==inputs[4]==inputs[8]==symbol2 or inputs[2]==inputs[4]==inputs[6]==symbol2:
                     print('Congratulations you won the game')
                     wongame=True
