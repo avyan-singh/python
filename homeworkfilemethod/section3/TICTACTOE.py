@@ -1,6 +1,6 @@
 def display_board(board):
     Board= (f"{board[0]}|{board[1]}|{board[2]}\n{board[3]}|{board[4]}|{board[5]}\n{board[6]}|{board[7]}|{board[8]}")
-    print(Board)
+    
     return Board
 
 def talk_to_user():
@@ -43,46 +43,54 @@ def in_range(ranged, count, place):
                 print('please print a valid number within given range')
 
 def add_to_board():
+        mylist=[0,1,2,3,4,5,6,7,8]
         count = 0
         symbol1, symbol2 = symbol_assignment()
         ranged=[0,1,2,3,4,5,6,7,8,9]
-        display_board(ranged) 
+        print(display_board(ranged))
         inputs=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
-        user_input(ranged, count, inputs, symbol1, symbol2)
+        user_input(ranged, count, inputs, symbol1, symbol2,mylist)
             
         
 
-def user_input(ranged, count, inputs, symbol1, symbol2):
+def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
     wongame=False
     while count<9:
+        if count==9 and wongame!=True:
+            print('DRAW')
         if wongame==True:    
             break 
         else:
             if(count%2==0):
-                place=int(input('Player1:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: '))
+                place=int(input(f'player 1: choose number from:{mylist} '))
+                mylist.remove(place)
                 in_range(ranged, count, place)
                 if inputs[place] == ' ':
                     inputs[place]=symbol1
-                    display_board(inputs)
+                    print(display_board(inputs))
                 else:
                     while inputs[place]!=' ':
-                        place=int(input('Player1:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: '))
+                        place=int(input(f'Player1:Choose number from:{mylist} '))
+                        mylist.remove(place)
                         in_range(ranged, count, place)
+                    print(display_board(inputs)) 
+                    mylist.remove(place)            
                 inputs[place]=symbol1
-                display_board(inputs)
                 if inputs[0]==inputs[1]==inputs[2]==symbol1 or inputs[3]==inputs[4]==inputs[5]==symbol1 or inputs[6]==inputs[7]==inputs[8]==symbol1 or inputs[0]==inputs[3]==inputs[6]==symbol1 or inputs[1]==inputs[4]==inputs[7]==symbol1 or inputs[2]==inputs[5]==inputs[8]==symbol1 or inputs[0]==inputs[4]==inputs[8]==symbol1 or inputs[2]==inputs[4]==inputs[6]==symbol1:
                     print('Congratulations you won the game')
                     wongame=True
             else:
                 while inputs[place]!=' ':
-                    place=int(input('Player2:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: '))
+                    place=int(input(f'Player2:choose number from:{mylist} '))
+                    mylist.remove(place)
                     in_range(ranged, count, place)
                 if inputs[place]==' ':
                     inputs[place]=symbol2
-                    display_board(inputs)
+                    print(display_board(inputs))
                 else:
                     while inputs[place]!=' ':
-                        place=int(input('Player2:Where you want to start with choose from 0,1,2,3,4,5,6,7,8 you can understand places from above numbering: '))
+                        place=int(input(f'Player2:Choose number from:{mylist} '))
+                        mylist.remove(place)
                         in_range(ranged, count, place)
                 if inputs[0]==inputs[1]==inputs[2]==symbol2 or inputs[3]==inputs[4]==inputs[5]==symbol2 or inputs[6]==inputs[7]==inputs[8]==symbol2 or inputs[0]==inputs[3]==inputs[6]==symbol2 or inputs[1]==inputs[4]==inputs[7]==symbol2 or inputs[2]==inputs[5]==inputs[8]==symbol2 or inputs[0]==inputs[4]==inputs[8]==symbol2 or inputs[2]==inputs[4]==inputs[6]==symbol2:
                     print('Congratulations you won the game')
