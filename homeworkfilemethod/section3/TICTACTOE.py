@@ -1,6 +1,5 @@
 def display_board(board):
     Board= (f"{board[0]}|{board[1]}|{board[2]}\n{board[3]}|{board[4]}|{board[5]}\n{board[6]}|{board[7]}|{board[8]}")
-    
     return Board
 
 def talk_to_user():
@@ -31,8 +30,7 @@ def symbol_assignment():
         return symbol1,symbol2
 
 def in_range(ranged, count, place,mylist):
-    count += 1
-    if count%2 == 0:
+    if count%2 == 1:
         while place not in ranged:
             if place not in ranged:
                 place=input(f'Player1:Choose number from:{mylist} ')
@@ -65,6 +63,7 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
             break 
         else:
             if(count%2==0):
+                count+=1
                 place=int(input(f'player 1: choose number from:{mylist} '))
                 in_range(ranged, count, place,mylist)
                 mylist.remove(place)
@@ -83,6 +82,7 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
                     print('Congratulations you won the game')
                     wongame=True
             else:
+                count+=1
                 while inputs[place]!=' ':
                     place=int(input(f'Player2:choose number from:{mylist} '))
                     in_range(ranged, count, place,mylist)
@@ -94,9 +94,8 @@ def user_input(ranged, count, inputs, symbol1, symbol2,mylist):
                     while inputs[place]!=' ':
                         place=int(input(f'Player2:Choose number from:{mylist} '))
                         in_range(ranged, count, place,mylist)
-                mylist.remove(place)
+                    mylist.remove(place)
                 if inputs[0]==inputs[1]==inputs[2]==symbol2 or inputs[3]==inputs[4]==inputs[5]==symbol2 or inputs[6]==inputs[7]==inputs[8]==symbol2 or inputs[0]==inputs[3]==inputs[6]==symbol2 or inputs[1]==inputs[4]==inputs[7]==symbol2 or inputs[2]==inputs[5]==inputs[8]==symbol2 or inputs[0]==inputs[4]==inputs[8]==symbol2 or inputs[2]==inputs[4]==inputs[6]==symbol2:
                     print('Congratulations you won the game')
                     wongame=True
-            count+=1
 add_to_board()
