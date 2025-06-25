@@ -1,0 +1,10 @@
+file1=open('file1.txt','w+')
+file1.write('file1')
+file1.close()
+file2=open('file2.txt','w+')
+file2.write('file2')
+file2.close()
+import zipfile
+comp_file=zipfile.ZipFile('compressed file.zip','w')
+comp_file.write('file1.txt',compress_type=zipfile.ZIP_DEFLATED)
+comp_file.write('file2.txt',compress_type=zipfile.ZIP_DEFLATED)

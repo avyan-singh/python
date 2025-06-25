@@ -1,0 +1,2 @@
+learning python
+learning to access a .txtfile using python
