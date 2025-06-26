@@ -1,6 +1,6 @@
 from PIL import Image
 mac=Image.open("C:\\avyan\\python\\working_with_images\\example.jpg")
-# mac.show()
+mac.show()
 print(mac.size)
 half=1993/2
 x=half-200
