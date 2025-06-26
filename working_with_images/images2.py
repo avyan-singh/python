@@ -1,0 +1,10 @@
+from PIL import Image
+red=Image.open("C:\\avyan\\python\\working_with_images\\red_color.jpg").convert("RGBA")
+blue=Image.open("C:\\avyan\\python\\working_with_images\\blue_color.png").convert("RGBA")
+red.show()
+blue.show()
+red.putalpha(128)
+blue.putalpha(128)
+red.paste(im=blue, box=(0, 0),mask=blue)
+red.show()
+red.save("C:\\avyan\\python\\working_with_images\\red_blue_combined.png", "PNG")
