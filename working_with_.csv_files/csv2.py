@@ -1,6 +1,5 @@
 import PyPDF2
-from PyPDF2 import PdfReader,PdfWriter
-import csv
+from PyPDF2 import PdfReader
 f=open("C:\\avyan\\python\\working_with_.csv_files\\Working_Business_Proposal.pdf","rb")
 pdf_reader=PdfReader(f)
 num_pages=len(pdf_reader.pages)

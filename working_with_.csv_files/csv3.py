@@ -1,5 +1,4 @@
 import PyPDF2
-import csv
 f=open("C:\\avyan\\python\\working_with_.csv_files\\Working_Business_Proposal.pdf","rb")
 reader=PyPDF2.PdfReader(f)
 for page in reader.pages:
