@@ -14,5 +14,7 @@ for line in data_lines:
 print(full_names) # full names
 csv_file=open("C:\\avyan\\python\\working_with_.csv_files\\file1.csv", mode="w",newline='')
 csv_writer=csv.writer(csv_file,delimiter=',')
-csv_writer.writerow(["Full Name","class"])
-csv_writer.writerows([['Jose','8th'],['John','8th']])
+csv_writer.writerow(["Full Name","Email"])
+for lines in data_lines:
+    csv_writer.writerow([lines[1]+' '+lines[2],lines[3]])
+
