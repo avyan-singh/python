@@ -4,7 +4,7 @@ import os
 from pathlib import Path
 import time
 import threading
-def search_text_in_directory_directory(text="hydrogen"):
+def search_text_in_directory_directory(text="hydrogen",basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")):
     text=text.lower()
     basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")
     dirs=[os.path.join(basedir,d) for d in os.listdir(basedir) if os.path.isdir(os.path.join(basedir,d))]
@@ -53,7 +53,7 @@ def search_text_in_directory_directory(text="hydrogen"):
                         if text in docx_text:
                             print(f"Found in DOCX file: {path}")
                             break
-def search_text_in_directory(text="hydrogen"):
+def search_text_in_directory(text="hydrogen",basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")):
     text=text.lower()
     basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")
     dirs=[os.path.join(basedir,d) for d in os.listdir(basedir) if os.path.isdir(os.path.join(basedir,d))]
@@ -89,13 +89,14 @@ def search_text_in_directory(text="hydrogen"):
                             docx_text=docx_text.lower()
                         if text in docx_text:
                             print(f"Found in DOCX file: {path}")
-t1=threading.Thread(target=search_text_in_directory)
-t2=threading.Thread(target=search_text_in_directory_directory)
+text="hydrogen"
+basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")
+t1=threading.Thread(target=search_text_in_directory(text,basedir))
+t2=threading.Thread(target=search_text_in_directory_directory(text,basedir))
 start = time.perf_counter()
 t1.start()
 t2.start()
-while t1.is_alive() and t2.is_alive():
-    time.sleep(0.05)
-
+t1.join()
+t2.join()
 end = time.perf_counter()
 print(f"Elapsed time: {end - start:.4f} seconds")
