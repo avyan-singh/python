@@ -3,8 +3,8 @@ import PyPDF2 as pypdf2
 import os
 from pathlib import Path
 import time
-def search_text_in_directory():
-    text="hydrogen"
+import threading
+def search_text_in_directory_directory(text="hydrogen"):
     text=text.lower()
     basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")
     dirs=[os.path.join(basedir,d) for d in os.listdir(basedir) if os.path.isdir(os.path.join(basedir,d))]
@@ -53,7 +53,12 @@ def search_text_in_directory():
                         if text in docx_text:
                             print(f"Found in DOCX file: {path}")
                             break
-        elif d.is_file():
+def search_text_in_directory(text="hydrogen"):
+    text=text.lower()
+    basedir=Path(r"C:\avyan\python\IMPORTANT_MODULES")
+    dirs=[os.path.join(basedir,d) for d in os.listdir(basedir) if os.path.isdir(os.path.join(basedir,d))]
+    for d in basedir.iterdir():
+        if d.is_file():
             for filename in basedir.iterdir():
                 path=os.path.join(basedir,filename)
                 if path.endswith('.txt'):
@@ -84,8 +89,13 @@ def search_text_in_directory():
                             docx_text=docx_text.lower()
                         if text in docx_text:
                             print(f"Found in DOCX file: {path}")
-
+t1=threading.Thread(target=search_text_in_directory)
+t2=threading.Thread(target=search_text_in_directory_directory)
 start = time.perf_counter()
-search_text_in_directory()
+t1.start()
+t2.start()
+while t1.is_alive() and t2.is_alive():
+    time.sleep(0.05)
+
 end = time.perf_counter()
 print(f"Elapsed time: {end - start:.4f} seconds")
